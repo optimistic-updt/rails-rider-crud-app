@@ -1,0 +1,37 @@
+<h1>Welcome</h1>
+
+<%= link_to 'New', new_rider_path %>
+<hr>
+
+<% @riders.each do |r| %>
+  <%= r.firstname %>
+  <%= r.lastname %>
+  <%= r.number %>
+  <%= link_to 'edit', edit_rider_path(r) %>
+  <%= link_to 'Murder him', rider_path(r), method: :delete, data: {confirm: "Are you sure?"} %>
+  <br>
+<% end %>
+
+<button class="json-button">JSON</button>
+
+<ul class="json-landing">
+</ul>
+
+<script>
+
+  const btnJson = document.querySelector('.json-button');
+  const jsonLanding = document.querySelector('.json-landing');
+
+  btnJson.addEventListener('click', function (e) {
+    axios.get('/jsonRiders').then(res => {
+      console.log("we hit route");
+      console.log(res.data);
+      
+      const listItem = document.createElement('li');
+      listItem.textContent = res.data[0].firstname ;
+
+      jsonLanding.appendChild(listItem);
+    })
+  });
+
+</script>

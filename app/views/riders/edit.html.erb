@@ -1,0 +1,16 @@
+<h1>Riders#edit</h1>
+
+<%= form_for @rider do |r|%>
+
+  <%= r.label :firstname %>
+  <%= r.text_field :firstname %>
+
+  <%= r.label :lastname %>
+  <%= r.text_field :lastname %>
+
+  <%= r.label :number %>
+  <%= r.text_field :number %>
+
+  <%= r.submit %>
+
+<% end %>
